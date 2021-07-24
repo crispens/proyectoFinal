@@ -1,4 +1,5 @@
 const express = require('express');
+const { validateCreate, validateModify } = require('../middlewares/productos');
 const router = express.Router();
 const model = require('../models/productos');
 
@@ -12,20 +13,18 @@ const single = (req, res) => {
 };
 
 const create = (req, res) => {
-    const obj = req.body;
-    model.create(obj).then(response => res.json(response)).catch((err) => res.status(500).json(err));
+    model.create(req.body).then((response) => res.json(response)).catch((err) => res.status(500).json(err));
 };
 
 const modify = (req, res) => {
-    const obj = req.body;
-    model.modify(req.params.id, obj).then(response => res.json(response)).catch((err) => res.status(500).json(err));
+    model.modify(req.params.id, req.body).then((response) => res.json(response)).catch((err) => res.status(500).json(err));
 };
 
 
 router.get('/all', all);
 router.get('/single/:id', single);
-router.post('/new', create);
-router.put('/modify/:id', modify);
+router.post('/new', validateCreate, create);
+router.put('/modify/:id', validateModify, modify);
 
 
 module.exports = router;
