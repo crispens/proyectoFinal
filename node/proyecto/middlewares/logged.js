@@ -16,4 +16,5 @@ const logeado = (req, res, next) => {
     }
 }
 
+
 module.exports = {logeado};

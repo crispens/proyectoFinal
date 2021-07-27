@@ -1,4 +1,4 @@
-const schemas = require('./schemas/personas');
+const schemas = require('./schemas/usuarios');
 
 
 const validateCreate = (req, res, next) => {

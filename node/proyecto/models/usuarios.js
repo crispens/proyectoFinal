@@ -1,5 +1,6 @@
 const bd = require('../utils/bd');
-const bdService = require('../utils/bdService');
+const bdService = require('../utils/dbService');
+const {v4: uuid} = require('uuid');
 
 
 const getAll = () => bd('usuarios').select('usuario', 'contraseña');
@@ -17,7 +18,6 @@ const create = async (obj) => {
 }
 
 const modify = ({id = false, obj, confirmacionCorreo = false}) => bd("usuarios").where({id}).orWhere({confirmacionCorreo}).update(obj);
-// UPDATE personas SET habilitado = true WHERE confirmacionCorreo = confirmacionCorreo (uuid) OR id = id
 
 
 module.exports = {getAll, single, modify, create};

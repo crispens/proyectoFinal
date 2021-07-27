@@ -10,6 +10,7 @@ const schemas = {
         precio: Joi.number().min(1).required(),
         id_categoria: Joi.number().integer().required(),
     }),
+    
     modify: Joi.object().keys({
         id: Joi.number().integer().required(),
         nombre: Joi.string().optional(),

@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const sha1 = require("sha1");
-const model = require("./../models/personas");
-const {validateModify} = require("../middlewares/personas");
+const model = require("../models/usuarios");
+const {validateModify} = require("../middlewares/usuarios");
 
 
 const get = (req, res) => {
@@ -14,7 +14,7 @@ const single = (req, res) => {
 }
 
 const modify = (req, res) => {
-    req.body.pass = sha1(req);
+    req.body.contraseña = sha1(req);
     model.modify(req.params.id, req.body).then((response) => res.json(response)).catch((err) => res.status(500).json(err));
 }
 

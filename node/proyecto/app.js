@@ -15,6 +15,7 @@ const categoriasRouter = require('./routes/categorias');
 const usuariosRouter = require('./routes/usuarios');
 const auth = require('./routes/auth');
 const perfil = require('./routes/perfil');
+const registro = require('./routes/registro');
 
 
 const app = express();
@@ -36,7 +37,7 @@ app.use('/categorias', categoriasRouter);
 app.use('/usuarios', usuariosRouter);
 app.use('/auth', auth);
 app.use('/perfil', logeado, perfil);
-
+app.use('/registro', registro);
 
 
 // catch 404 and forward to error handler
