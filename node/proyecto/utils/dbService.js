@@ -1,8 +1,8 @@
 const bd = require('./bd');
 
 
-const create = (table, obj) => bd(table).insert(obj);
-const modify = (table, id, obj) => bd(table).where({id}).update(obj);
+const create = (tabla, obj) => bd(tabla).insert(obj);
+const modify = (tabla, id, obj) => bd(tabla).where({id}).update(obj);
 
 
 module.exports = {create, modify};

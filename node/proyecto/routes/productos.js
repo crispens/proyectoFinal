@@ -2,6 +2,10 @@ const express = require('express');
 const { validateCreate, validateModify } = require('../middlewares/productos');
 const router = express.Router();
 const model = require('../models/productos');
+const multer = require('multer');
+const config = { dest: "./public/tmp"};
+const upload = multer(config);
+const service = require('../services/productos');
 
 
 const all = (req, res) => {
@@ -13,7 +17,13 @@ const single = (req, res) => {
 };
 
 const create = (req, res) => {
-    model.create(req.body).then((response) => res.json(response)).catch((err) => res.status(500).json(err));
+    try {
+        const idImg = service.createProd(req.body, req.files);
+        res.json({idImg})
+    } 
+    catch (err) {
+        res.sendStatus(500)
+    }
 };
 
 const modify = (req, res) => {
@@ -23,7 +33,7 @@ const modify = (req, res) => {
 
 router.get('/all', all);
 router.get('/single/:id', single);
-router.post('/new', validateCreate, create);
+router.post('/new', upload.array("imagen"), validateCreate, create);
 router.put('/modify/:id', validateModify, modify);
 
 

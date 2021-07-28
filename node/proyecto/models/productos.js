@@ -8,7 +8,9 @@ const single = (id) => bd('productos').where({'habilitado' : 1, id});
 
 const create = (obj) => bdService.create('productos', obj);
 
+const createImagen = (obj) => bdService.create('productos_imagenes', obj);
+
 const modify = (id, obj) => bdService.modify('productos', id, obj);
 
 
-module.exports = {getAll, single, create, modify};
+module.exports = {getAll, single, create, createImagen, modify};
